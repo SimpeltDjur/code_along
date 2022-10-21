@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My todo Page</title>
+    <link th:rel="stylesheet" th:href="@{todo.css}">
+    <script th:src="@{todo.js}"></script>
+</head>
+<body>
+    <div th:class="container">
+        <h1>Todos att utföra</h1>
+        <div th:each="todo : ${todoList}">
+            <h3 th:text="${todo.getTitle()}"></h3>
+            <p th:text="${todo.getDescription()}"></p>
+            <button
+                th:data-id="${todo.getId()}"
+                th:onclick="handleDelete(this.getAttribute('data-id'))"
+            >
+                Delete
+            </button>
+            <hr>
+        </div>
+        <a th:href="@{/todoform}"><button>Add Todo</button></a>
+    </div>
+</body>
+</html>
